@@ -31,11 +31,13 @@ for old in file_names:
     i = i + 1
 
     if old_pattern == "*":
-        new = "{0}{1}{2}".format(new_pattern, str(i), old[-4:len(old)])
+        file_type = old.split(".")[-1]
+        new = "{0}{1}.{2}".format(new_pattern, str(i), file_type)
         print("{0}\t\tchange to\t\t{1}".format(old, new))
         os.renames(old, new)
 
     elif old_pattern in old:
-        new = "{0}{1}{2}".format(new_pattern, str(i), old[-4:len(old)])
+        file_type = old.split(".")[-1]
+        new = "{0}{1}.{2}".format(new_pattern, str(i), file_type)
         print("{0}\t\tchange to\t\t{1}".format(old, new))
         os.renames(old, new)
