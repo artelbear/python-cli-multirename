@@ -1,43 +1,41 @@
-# For Run you need os, Cython, Kivy, Python3
+# For run you need Kivy, Python3
 
 
 import os
 # from kivy.app import App
 
 
-directory = input("Where:\t")
+directory = input("Search where:\t")
 
 if directory == "":
     directory = "."
 
 
-old_pattern = input("What:\t")
+old_pattern = input("Contain what:\t")
 
 if old_pattern == "":
     old_pattern = "*"
 
 
-new_pattern = input("To:\t")
+new_pattern = input("Rename to:\t")
 
 
 os.chdir(directory)
 
-file_names = os.listdir()
+file_names = os.listdir(".")
 
 
 i = 0
 
 for old in file_names:
+    i = i + 1
 
     if old_pattern == "*":
-        i = i + 1
-        new = new_pattern + str(i)
-        print(old + "\t\tchange to\t\t" + new)
+        new = "{0}{1}{2}".format(new_pattern, str(i), old[-4:len(old)])
+        print("{0}\t\tchange to\t\t{1}".format(old, new))
         os.renames(old, new)
 
     elif old_pattern in old:
-        i = i + 1
-        new = old.replace(old_pattern, new_pattern)
-        new = new + str(i)
-        print(old + "\t\tchange to\t\t" + new)
+        new = "{0}{1}{2}".format(new_pattern, str(i), old[-4:len(old)])
+        print("{0}\t\tchange to\t\t{1}".format(old, new))
         os.renames(old, new)
